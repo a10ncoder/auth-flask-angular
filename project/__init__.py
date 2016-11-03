@@ -1,6 +1,17 @@
+
 from flask import Flask
+from flask_bcrypt import Bcrypt
+from flask_sqlalchemy  import SQLAlchemy
+from project.config import BaseConfig
+
+
+# config
 
 app = Flask(__name__)
+app.config.from_object(BaseConfig)
+
+bcrypt = Bcrypt(app)
+db = SQLAlchemy(app)
 
 
 @app.route('/')
@@ -22,6 +33,3 @@ def login():
 def logout():
     pass
 
-
-if __name__ == '__main__':
-	app.run(debug=True)
